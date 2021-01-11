@@ -9,16 +9,9 @@ public class RemoveDuplicate {
 	
 	public static void main(String[] args) {
 		
-		//If you want to take input as an array
-		int N=10; //size of an array
-		System.out.println("Please enter size of an array(N) : ");
-		Scanner sc = new Scanner(System.in);
-		N = sc.nextInt();
-		int arr[]= new int[N];
-		System.out.println("Enter array elements : ");
-		for(int i=0;i<N;i++) {
-			arr[i] = sc.nextInt();
-		}
+		int N = ArrayInput.getSize();
+		int arr[] = new int[N];
+		arr = ArrayInput.getInputArray(arr);
 		
 		//Logic for removing duplicates from a sorted array.
 		int newN;
