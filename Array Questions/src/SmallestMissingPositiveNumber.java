@@ -50,6 +50,8 @@ public class SmallestMissingPositiveNumber {
 		 * 
 		 * T(n) : O(n) and Space complexity : O(1)
 		 */
+		
+		/*
 		boolean found_1 = false;
 		for(int i=0;i<N;i++) {
 			if(arr[i]==1) {
@@ -80,6 +82,49 @@ public class SmallestMissingPositiveNumber {
 		}
 		
 		System.out.println("Smallest Missing positive number is : "+ (N+1));
+		*/
+        //----------------------------------------------------------------------------------------------------
+		
+		//Method - 4
+		/*
+		 * Step 1 : segregate all negative number in the start of the array
+		 * Step 2 : Now run the logic only on positive numbers.
+		 * Step 3 : mark arr[number] = -1* arr[number]; where number is arr[i]-1
+		 */
+		int count = 0;
+		for(int i=0;i<N;i++) {
+			if(arr[i]<1) {
+				int temp = arr[count];
+				arr[count] = arr[i];
+				arr[i] = temp;
+				
+				count++;
+			}
+		}
+		int arr2[] = new int[N-count+1];
+		
+		for(int i=count;i<N;i++) {
+			arr2[i-count] = arr[i];
+		}
+		
+		for(int i=0;i<(N-count);i++) {
+			int x = Math.abs(arr2[i]) -1 ;
+			if(x <N && arr2[x]>0) {
+				arr2[x] = -1 * arr2[x];
+			}
+		}
+		
+		boolean found = false;
+		for(int i=0;i<(N-count);i++) {
+			if(arr2[i]>0) {
+				System.out.println("Smallest positive missing number : "+ (i+1));
+				found = true;
+				break;
+			}
+		}
+		
+		if(found == false)
+		System.out.println("Smallest positive missing number : "+ (N-count+1));
 	}
 
 }
