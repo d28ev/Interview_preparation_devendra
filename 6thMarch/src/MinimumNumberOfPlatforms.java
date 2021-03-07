@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class MinimumNumberOfPlatforms {
 
@@ -8,8 +9,8 @@ public class MinimumNumberOfPlatforms {
 		
 			ans : 3
 		 */
-//		double[] arr = {9.00, 9.40};
-//		double[] dept = {9.10, 12.00};
+		//double[] arr = {9.00, 9.40};
+		//double[] dept = {9.10, 12.00};
 		//ans : 1
 		
 		double[] arr = {9.00, 9.40, 9.50, 11.00, 15.00, 18.00};
@@ -35,7 +36,33 @@ public class MinimumNumberOfPlatforms {
 		
 		System.out.println("Minimum_platforms : "+ min_platforms);
 		
+		/*
+		 * we can optimize above using sort
+		 */
 		
+		Arrays.sort(arr);
+		Arrays.sort(dept);
+		
+		int platforms = 0;
+		int arr_index = 0;
+		int dept_index = 0;
+		int ans=0;
+		
+		while(arr_index < arr.length && dept_index < dept.length) {
+			if(arr[arr_index]< dept[dept_index]) {
+				platforms++;
+				arr_index++;
+				if(platforms > ans) {
+					ans = platforms;
+				}
+			}
+			else {
+				platforms--;
+				dept_index++;
+			}
+		}
+		
+		System.out.println("Ans is : "+ ans);
 		
 
 	}
