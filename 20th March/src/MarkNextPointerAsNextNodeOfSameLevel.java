@@ -11,12 +11,14 @@ public class MarkNextPointerAsNextNodeOfSameLevel {
 
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(20);
-		root.left = new TreeNode(10);
-		root.right = new TreeNode(30);
-		root.left.left = new TreeNode(5);
-		root.left.right = new TreeNode(9);
-		root.right.left = new TreeNode(11);
-		root.right.right = new TreeNode(25);
+		root.left = new TreeNode(30);
+		root.right = new TreeNode(50);
+		root.left.left = new TreeNode(90);
+		root.left.left.left = new TreeNode(100);
+		root.left.right = new TreeNode(130);
+		root.right.left = new TreeNode(500);
+		root.right.right = new TreeNode(900);
+		root.right.right.right = new TreeNode(190);
 		
 		//print inorder traversal
 		//inorder(root);
@@ -29,18 +31,24 @@ public class MarkNextPointerAsNextNodeOfSameLevel {
 		inorder(root);
 	}
 	
+	/*
+	 * Note : this approach will not work for not complete tree.
+	 */
 	public static void setNextPointer(TreeNode root) {
 		if(root == null) {
 			return;
 		}
 		
 		if(root.left != null) {
-			root.left.next = root.right;
-			//System.out.println(root.left.data + "-> "+ root.right.data);
+			if(root.right!=null) {
+				root.left.next = root.right;
+			}
+			else {
+				root.left.next = null;
+			}		
 		}
 		if(root.right != null) {
 			if(root.next != null) {
-				//System.out.println(root.right.data + "-> "+ root.next.left.data);
 				root.right.next = root.next.left;
 			}
 			else

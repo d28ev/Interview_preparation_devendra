@@ -56,12 +56,10 @@ public class NextGreaterPermutation {
 			ans1 += array[i];
 		}
 		
-		
-		
-		
 		System.out.println("Next greater number is : "+ ans1);
 		}
 
 	}
 
 }
+
